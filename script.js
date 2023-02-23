@@ -1,5 +1,6 @@
 $(document).ready(onReady);
 
+
 let fungusHP = 100;
 let apCost = 100;
 // State Variables can be declared outside of the onReady
@@ -49,12 +50,20 @@ function attack () {
             console.log("this isnt working");
     
         }
-       
+        while (fungusHP <= 0) {
+            fungusHP ++; // Don't want fungusHP to fall below 0
+          }
+        // if (fungusHP < 50 && regenHealth !== true){
+        //  //   let regenHealth = fungusHP++;
+        //     regenerateHealth();
+        //     regenHealth=true;
+        // }
     render ();
         }
         }
 
 function render (){
+    
     $('#hp-meter').val(fungusHP)
     console.log('Decrease the HP damage of Fungus' , fungusHP);
     $( ".attack-btn:disabled" ).val( "Cannot Use" );
@@ -93,6 +102,17 @@ else if (apCost < 12 ) {
     $('.freaky-fungus.walk').removeClass("walk").addClass("jump");
 
 }
+function regenerateHealth (){
+    let newInterval = setInterval(function() {
+        fungusHP++
+        console.log(fungusHP);
+    $('#hp-meter').val(`${fungusHP}`);
+    $('.hp-text').html(`<p>${fungusHP} HP</p>`);
+
+    }, 1000)
+
+    interval= newInterval;
 }
 
 
+}
